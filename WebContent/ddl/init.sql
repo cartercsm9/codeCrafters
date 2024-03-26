@@ -34,8 +34,11 @@ CREATE TABLE weather_data (
     temperature DECIMAL(5, 2) NOT NULL,
     weather_description TEXT NOT NULL,
     icon VARCHAR(255),
+    humidity DECIMAL(5, 2),
+    wind_speed DECIMAL(5, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 ALTER TABLE weather_data ADD UNIQUE(city, forecast_date);
 
 CREATE TABLE user_preferences (

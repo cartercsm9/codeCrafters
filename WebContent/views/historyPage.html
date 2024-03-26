@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Tracker History</title>
+    <link rel="stylesheet" href="historyPage.css">
+</head>
+<body>
+    <header>
+        <h1>Weather Tracker History</h1>
+    </header>
+    <main>
+        <div class="filter-buttons">
+            <button class="filter-button" data-filter="date">Date</button>
+            <button class="filter-button" data-filter="location">Location</button>
+            <button class="filter-button" data-filter="condition">Condition</button>
+        </div>
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Temperature (°C)</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024-03-24</td>
+                    <td>Kelowna</td>
+                    <td>11</td>
+                    <td>Sunny</td>
+                </tr>
+                <tr>
+                    <td>2024-03-23</td>
+                    <td>Vancouver</td>
+                    <td>13</td>
+                    <td>Rainy</td>
+                </tr>
+                <tr>
+                    <td>2024-03-23</td>
+                    <td>Seattle</td>
+                    <td>7</td>
+                    <td>Cloudy</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="graphs-container">
+            <div class="graph-box" id="graph-box-1"></div>
+            <div class="graph-box" id="graph-box-2"></div>
+            <div class="graph-box" id="graph-box-3"></div>
+        </div>
+    </main>
+</body>
+</html>
