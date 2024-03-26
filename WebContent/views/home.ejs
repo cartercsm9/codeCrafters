@@ -7,11 +7,22 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <nav>
-                <a href="/login" class="login-link">Login</a>
-            </nav>
-        </div>
+        <header>
+            <div class="header-container">
+                <nav>
+                    <!-- Include logout link if user is logged in -->
+                    <% if (username) { %>
+                        <a href="/logout" class="logout-link">Logout</a>
+                    <% } else { %>
+                        <a href="/login" class="login-link">Login</a>
+                    <% } %>
+                </nav>
+                <!-- Display welcome message centered -->
+                <% if (username) { %>
+                    <p class="welcome-message">Welcome <%= username %></p>
+                <% } %>
+            </div>
+        </header>
     </header>
     <main class="dashboard">
         <div class="info-panels">
@@ -44,6 +55,7 @@
             </div>
         </div>
     </main>
+
     <script src="/weathertest.js"></script>
     <script src="/getCurrentLocation.js"></script>
     <script>

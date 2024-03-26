@@ -23,24 +23,37 @@ function requestUserLocation() {
     }
 }
 
-function getCityName(latitude, longitude, callback) {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+function getCityName(latitude, longitude) {
+    return new Promise((resolve, reject) => {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.address && data.address.city) {
-                console.log("City: " + data.address.city);
-                callback(data.address.city); // Use callback to return city name
-            } else if (data.address && (data.address.town || data.address.village)) {
-                console.log("Location: " + (data.address.town || data.address.village));
-                callback(data.address.town || data.address.village); // Use callback to return town or village name
-            } else {
-                console.log("City name not found in the data");
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching city name: ", error);
-        });
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('City not found');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.address && data.address.city) {
+                    console.log("City: " + data.address.city);
+                    resolve(data.address.city); // Resolve with city name
+                } else if (data.address && (data.address.town || data.address.village)) {
+                    console.log("Location: " + (data.address.town || data.address.village));
+                    resolve(data.address.town || data.address.village); // Resolve with town or village name
+                } else {
+                    reject(new Error('City name not found in the data')); // Reject if city name not found
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching city name: ", error.message);
+                reject(error); // Reject with error
+            });
+    });
 }
 
+
+
+
+
+module.exports.getCityName = getCityName;

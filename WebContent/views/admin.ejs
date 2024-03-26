@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/style3.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title><% title %></title>
 </head>
 <body>
-    <h1>Welcome Back Admin</h1>
-    
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="/login" method="post">
-            <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username"><br><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Login">
-        </form>
-    </div>
+    <h1>Welcome Admin</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let user of users) { %>
+            <tr>
+                <td><%= user.user_id %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.created_at %></td>
+                <td>
+                    <form action="/users/removeUser" method="post">
+                        <!-- Use EJS tags to output the value -->
+                        <input type="hidden" name="userId" value="<%= user.user_id %>">
+                        <button type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+        
+    </table>
 </body>
 </html>

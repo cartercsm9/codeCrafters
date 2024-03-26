@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Page</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             background-color: #216DFF;
@@ -15,7 +16,6 @@
             background-color: #216DFF;
             padding: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
         .search-bar {
@@ -45,26 +45,11 @@
 </head>
 <body>
     <div class="header">
-        <input type="text" class="search-bar" placeholder="Search">
+        <input type="text" class="search-bar" placeholder="Search" id="searchInput">
+        <button class="panel" onclick="getCurrForecast(document.getElementById('searchInput').value)">Get Weather</button>
     </div>
-    <div class="content">
-        <h1>Kelowna</h1>
-        <h2>Temperature: 1°C</h2>
-        <img src="/Users/rhythmtrivedi/Documents/sun.png" alt="Weather Forecast" width="100">
-        <p>Feels Like: 0°C</p>
-    </div>
-    <div class="today">
-        <h2>Today</h2>
-        <p>Wind: 10 km/h</p>
-        <p>Wind Gusts: 15 km/h</p>
-        <p>Air Quality: Good</p>
-        <p>Humidity: 60%</p>
-        <p>Rain: 5%</p>
-    </div>
-    <div class="tomorrow">
-        <h2>Tomorrow</h2>
-        <p>Temperature: 4°C</p>
-        <p>Rain: 10%</p>
-    </div>
+    <div class="content" id="forecast"></div>
+    
+    <script src="/weathertest.js"></script>
 </body>
 </html>
